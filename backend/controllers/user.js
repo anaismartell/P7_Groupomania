@@ -1,60 +1,87 @@
 const connectdb = require('../connectdb.js');
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const UserModels = require ('../models/userModel.js');
+const bcrypt = require('bcryptjs');
+const UserModel = require ('../models/userModel.js');
 
-let userModels = new UserModels();
+let userModel = new UserModel();
 
-exports.signup = () => {
-    // variable email
-    // variable password
-    // variable firstname
-    // variable lastname
-    // hash du mot de passe 
-        //.then
-        //.catch
-    //.catch
+exports.signup = (req, res, next) => {
+    let email = req.body.email;
+	let password = req.body.password;
+	let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    bcrypt.hash(password, 10)
+        .then (hash => {
+            let sqlInsert = [lastName, firstName, email, hash];
+            userModel.signup(sqlInsert)
+                .then((response) =>{
+                    res.status(201).json(JSON.stringify(response))
+                })
+                .catch((error) =>{
+                    console.error(error);
+                    res.status(400).json({error})
+                })
+        })
+        .catch(error => res.status(500).json(error)) 
+};
 
-}
+exports.login = (req, res, next) => {
+    let email = req.body.email;
+    let password = req.body.password;
+    let sqlInsert = [email];
+    userModel.login(sqlInsert, password)
+        .then((response) =>{
+            res.status(200).json(JSON.stringify(response))
+        })
+        .catch((error) =>{
+            res.status(400).json(error)
+        })
+};
 
-exports.login = () => {
-    // variable email
-    // variable password
-    // .then
-    //.catch
-}
+exports.displayProfile = (req, res, next) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const userId = decodedToken.userId;
+    let sqlInsert = [userId];
+    userModel.dysplayProfile(sqlInsert)
+        .then((response) =>{
+            res.status(200).json(JSON.stringify(response))
+        })
+        .catch((error) =>{
+            console.log(error);
+            res.status(400).json(error)
+        })
+};
 
-exports.seeMyProfile = () => {
-    // récupère le token
-    // décode le token
-    // stocke dans une variable le token décodé de l'userId
-    // variable sql qui stocke l'user ID 
-    // on insère la variable sql 
-    //.then
-    //.catch
-}
+exports.updateProfile = (req, res, next) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const userId = decodedToken.userId;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let email = req.body.email;
+    let sqlInsert = [firstName, lastName, email, userId];
+    userModel.updateUser(sqlInsert)
+        .then((response) =>{
+            res.status(200).json(JSON.stringify(response))
+        })
+        .catch((error) =>{
+            res.status(400).json(error)
+        })
+};
 
-exports.updateProfile = () => {
-    // variable qui stocke le firstname saisi
-    // variable qui stocke le lastname saisi
-    // variable qui stock l'email saisi
-    // récupère le token
-    // décode le token
-    // stocke dans une variable le token décodé de l'userId
-    // variable sql qui stocke le firstname, lastname, email et userId 
-    // on insère la variable sql 
-    //.then
-    //.catch
-
-}
-
-exports.deleteUser = () => {
-    // récupère le token
-    // décode le token
-    // stocke dans une variable le token décodé de l'userId
-    // variable sql qui stocke l'user ID 
-    // on insère la variable sql 
-    //.then
-    //.catch
-}
+exports.deleteUser = (req, res, next) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const userId = decodedToken.userId;
+    let sqlInsert = [userId];
+    userModel.deleteUser(sqlInsert)
+        .then((response) =>{
+            res.status(200).json(JSON.stringify(response))
+        })
+        .catch((error) =>{
+            console.log(error);
+            res.status(400).json(error)
+        })
+};
