@@ -7,7 +7,7 @@ const multer = require('../middleware/multer-config');
 const postCtrl = require('../controllers/post');
 
 try{
-    router.get('/', postCtrl.getAllPosts);// Ne pas oublier de mettre le "auth" après la réalisation des tests
+    router.get('/', auth, postCtrl.getAllPosts);
     router.post('/', auth, postCtrl.createPost);
     router.put('/:id', auth, postCtrl.updatePost);
     router.delete('/:id', auth, postCtrl.deletePost); 

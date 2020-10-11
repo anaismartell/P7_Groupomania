@@ -2,17 +2,17 @@
 
 const connectdb = require('../connectdb.js');
 const mysql = require('mysql');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 
 class PostModel {
+    constructor(){
+    }
 
-    createPost(sqlInsert){
-        let sql_request = 'INSERT INTO posts VALUES(NULL, ?, ?, ?, NOW(), 0)';
-        sql_request = mysql.format(sql_request, sqlInsert);
+    createPost(sqlInserts){
+        let sql = 'INSERT INTO posts VALUES(NULL, ?, ?, ?, NOW(), 0)';
+        sql = mysql.format(sql, sqlInserts);
         return new Promise((resolve) =>{
-            connectdb.query(sql_request, function (err, result, fields) {
+            connectdb.query(sql, function (err, result, fields) {
                 if (err) throw err;
                 resolve({message : 'Le nouveau post a bien été créé!'});
             })       
@@ -147,20 +147,21 @@ class PostModel {
     };
 
     getComments(sqlInsert){ // affcher tous les commentaires
-        let sql_request = "SELECT comments.comContent, DATE_FORMAT(comments.date, '%e/%m/%y à %k:%i:%s') AS date, comments.id, comments.userId, users.firstName, users.lastName FROM comments JOIN users on comments.userId = users.id WHERE postId = ? ORDER BY date";
-        sql_request = mysql.format(sql_request, sqlInsert);
+        let sql= "SELECT comments.comContent, DATE_FORMAT(comments.date, '%e/%m/%y à %k:%i:%s') AS date, comments.id, comments.userId, users.firstName, users.lastName FROM comments JOIN users on comments.userId = users.id WHERE postId = ? ORDER BY date";
+        sql = mysql.format(sql, sqlInsert);
         return new Promise((resolve) =>{
-            connectdb.query(sql_request, function (err, result, fields){
+            connectdb.query(sql, function (err, result, fields){
                 if (err) throw err;
                 resolve(result);
             })
         })
     };
 
+    
     getAlllikes(){ // afficher tous les likes
-        let sql_request = 'SELECT * FROM likes';
+        let sql = 'SELECT * FROM likes';
         return new Promise((resolve) =>{
-            connectdb.query(sql_request, function (err, result, fields) {
+            connectdb.query(sql, function (err, result, fields) {
                 if (err) throw err;
                 resolve(result)
             });

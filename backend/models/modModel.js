@@ -2,11 +2,11 @@
 
 const connectdb = require('../connectdb.js');
 const mysql = require('mysql');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 
 
 class ModerationModel { 
+    constructor(){
+    }
 
     getAllPosts() { // peut afficher tous les posts
         let sql_request = "SELECT posts.id, posts.userId, posts.title, posts.content, DATE_FORMAT(posts.date, '%e/%m/%y à %k:%i:%s') AS date, posts.likes, users.lastName, users.firstName FROM posts JOIN users ON posts.userId = users.id ORDER BY date DESC";

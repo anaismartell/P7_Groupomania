@@ -8,8 +8,8 @@ module.exports = (req, res, next) => {
         const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
         const userId = decodedToken.userId;
         let sqlInsert = [userId];
-        let sql_request = 'SELECT COUNT(id) FROM users WHERE id=?';
-        sql_request = mysql.format(sql, sqlInsert); 
+        let sql = 'SELECT COUNT(id) FROM users WHERE id=?';
+        sql = mysql.format(sql, sqlInsert); 
         connectdb.query(sql, function(err, result){
             if (err) reject({error : 'Erreur dans l\'inscription'});
             if (result[0]['COUNT(id)'] !== 1) {

@@ -13,8 +13,8 @@ exports.signup = (req, res, next) => {
     let lastName = req.body.lastName;
     bcrypt.hash(password, 10)
         .then (hash => {
-            let sqlInsert = [lastName, firstName, email, hash];
-            userModel.signup(sqlInsert)
+            let sqlInserts = [lastName, firstName, email, hash];
+            userModel.signup(sqlInserts)
                 .then((response) =>{
                     res.status(201).json(JSON.stringify(response))
                 })
@@ -44,7 +44,7 @@ exports.displayProfile = (req, res, next) => {
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
     const userId = decodedToken.userId;
     let sqlInsert = [userId];
-    userModel.dysplayProfile(sqlInsert)
+    userModel.displayProfile(sqlInsert)
         .then((response) =>{
             res.status(200).json(JSON.stringify(response))
         })
@@ -62,7 +62,7 @@ exports.updateProfile = (req, res, next) => {
     let lastName = req.body.lastName;
     let email = req.body.email;
     let sqlInsert = [firstName, lastName, email, userId];
-    userModel.updateUser(sqlInsert)
+    userModel.updateProfile(sqlInsert)
         .then((response) =>{
             res.status(200).json(JSON.stringify(response))
         })
