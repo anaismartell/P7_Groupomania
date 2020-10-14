@@ -14,7 +14,7 @@ exports.deletePost = (req, res, next) => { // suppression d'un post
     if(moderation == 1){ // si le profil est trouvé
         let postId = req.params.id; // stocke l'id du post
         let sqlInsert = [postId];
-        moderationModels.deletePost(sqlInsert)
+        moderationModel.deletePost(sqlInsert)
             .then((response) => {
                 res.status(200).json(JSON.stringify(response));
             })

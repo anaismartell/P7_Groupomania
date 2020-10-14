@@ -158,7 +158,7 @@ class PostModel {
     };
 
     
-    getAlllikes(){ // afficher tous les likes
+    getAllLikes(){ // afficher tous les likes
         let sql = 'SELECT * FROM likes';
         return new Promise((resolve) =>{
             connectdb.query(sql, function (err, result, fields) {
