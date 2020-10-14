@@ -64,7 +64,7 @@ class UserModel {
         let sql= 'UPDATE users SET firstName = ?, lastName = ?, email = ? WHERE id = ?';
         sql = mysql.format(sql, sqlInsert);
         return new Promise((resolve, reject) =>{
-            connectdb.query(sql_request, function(err, result){
+            connectdb.query(sql, function(err, result){
                 if (err) return reject({error : 'La fonction est indisponible'});
                 resolve({message : 'Les informations ont bien été mises à jour!'});
             }) 
@@ -76,7 +76,7 @@ class UserModel {
         let sql = 'DELETE FROM users WHERE id = ?'; 
         sql = mysql.format(sql, sqlInsert);
         return new Promise((resolve, reject) =>{
-            connectdb.query(sql_request, function(err, result){
+            connectdb.query(sql, function(err, result){
                 if (err) return reject({error : 'La fonction est indisponible'});
                 resolve({message : 'Utilisateur supprimé'});
             }) 

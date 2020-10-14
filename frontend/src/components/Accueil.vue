@@ -4,8 +4,9 @@
             <div class="logo">
                 <v-img src="../assets/icon-left-font-monochrome-black.png" id ="logo"></v-img>
             </div>  
-            <h1 class="ml-12">Bienvenue sur l'Intranet de Groupomania !</h1>
-            <router-view></router-view>
+            <div id = "contentText">
+                <h1 class="ml-12">Bienvenue sur l'Intranet de Groupomania !</h1>
+            </div>
             <v-carousel
                 id="carousel" cycle height="auto" hide-delimiters :show-arrows="false">
                 <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.src"></v-carousel-item>
@@ -39,6 +40,10 @@ export default {
 }
 </script>
 <style lang="scss">
+    #logo {
+        align-items: center;
+        margin-bottom: 10%;
+    }
     #homePage{
         background-color: #fcdcdc;
     }
@@ -58,6 +63,4 @@ export default {
     width: 80%;
     } 
 }
-        
-    
 </style>
