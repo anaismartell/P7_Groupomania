@@ -1,29 +1,27 @@
 <template>
     <v-app id="forum" class="forum">
-
         <top-header/>
         <div class="ml-12">
-             <v-img src="../assets/icon-left-font-monochrome-black.png" id ="logo"></v-img>
+            <v-img src="../assets/icon-left-font-monochrome-black.png" id ="logo"></v-img>
             <h1 class="ma-4">Forum de partage</h1>
             <router-view></router-view>
             <v-container >
                 <v-btn class="ma-3" color="black white--text" @click="displayForm">Créer un post</v-btn>
-                <v-card class="forum__post ma-3 mt-6" v-for="(post, index) in allPosts" v-bind:key="index">
-                    <div class="d-flex justify-space-between">
-                        <v-card-title>
-                            <h2 class="forum__post__title ml-0">{{ post.title }}</h2>
-                        </v-card-title>
-                        <v-card-actions class=" forum__post__manage" v-if="post.userId == userId">
-                            <v-btn class="forum__post__manage--btn" color="black" title="modifier le post" @click.stop="goDialogUpPost(post.title, post.content, post.id)" icon>
-                                <v-icon>mdi-pencil</v-icon>
-                            </v-btn>
-                            <v-btn class="forum__post__manage--btn" color="black" title="supprimer le post" @click="deletePost(post.id)" icon>
-                                <v-icon>mdi-delete</v-icon>
-                            </v-btn> 
-                        </v-card-actions>
-
-                    </div>
-
+                    <v-card class="forum__post ma-3 mt-6" v-for="(post, index) in allPosts" v-bind:key="index">
+                        <div class="d-flex justify-space-between">
+                            <v-card-title>
+                                <h2 class="forum__post__title ml-0">{{ post.title }}</h2>
+                            </v-card-title>
+                            <v-card-actions class=" forum__post__manage" v-if="post.userId == userId">
+                                <v-btn class="forum__post__manage--btn" color="black" title="modifier le post" @click.stop="goDialogUpPost(post.title, post.content, post.id)" icon>
+                                    <v-icon>mdi-pencil</v-icon>
+                                </v-btn>
+                                <v-btn class="forum__post__manage--btn" color="black" title="supprimer le post" @click="deletePost(post.id)" icon>
+                                    <v-icon>mdi-delete</v-icon>
+                                </v-btn> 
+                            </v-card-actions>
+                        </div>
+                    
                     <v-card-subtitle class="forum__post__name">
                         Par {{ post.firstName }} {{ post.lastName }}, le {{ post.date }} à {{ post.time }}
                     </v-card-subtitle>
@@ -31,7 +29,6 @@
                     <v-card-text class="v-card-text black--text forum__post__content" >
                         {{ post.content }}
                     </v-card-text>
-
 
                     <v-card-text class="py-0">
                         <v-btn icon fab title="J'aime" class="ma-3" color="green"  @click="likePost(post.id, post.likes)">
@@ -45,7 +42,6 @@
                         </v-btn>
                     </v-card-text>
 
-            
                     <v-dialog v-model="dialogUpPost" max-width="500px">
                         <v-card>
                             <v-card-title>Modifier mon post</v-card-title>
@@ -61,7 +57,6 @@
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
-
                 
                     <div class="forum__comments" v-if="postId === post.id">
                         <v-card class="forum__comments--ind my-1 mx-2 pa-3 " color="#ECECEC" v-for="(comment, index) in allComments" v-bind:key="index" outlined>
@@ -73,7 +68,6 @@
                                 {{ comment.comContent }}
                             </v-card-text>
 
-                            
                             <v-dialog v-model="dialogUpCom" max-width="500px">
                                 <v-card>
                                     <v-card-title>Modifier mon commentaire</v-card-title>
@@ -92,13 +86,11 @@
 
                         <v-btn v-if="!afficheFrmCm" color="black white--text" title="commenter le post" class="ma-2" @click="displayFormCom()">Commenter</v-btn>
                         
-                        
                         <v-card v-if="afficheFrmCm">
                             <v-form  ref="form" class="ma-3" v-model="valid" v-if="form">
                                 <v-textarea background-color="#ECECEC" color="black" v-model="dataCom.content" :rules="comContentRules" :counter="255" label="Commentaire" autofocus required></v-textarea>
                             </v-form>
                             <v-btn :disabled="!valid" class="success ma-2" @click="sendCom(post.id)">Poster</v-btn>
-                            
                         </v-card>
                     </div>
                 </v-card>

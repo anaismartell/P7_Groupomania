@@ -7,20 +7,18 @@
             <v-card-title class="my-3 justify-center">
                 <h1>Mon profil</h1>
             </v-card-title>
-
             <v-card-text class="ml-2 black--text">
                 <p>Prénom : {{ dataGet.firstName }}</p>
                 <p>Nom : {{ dataGet.lastName }}</p>
                 <p>E-mail : {{ dataGet.email }}</p>
             </v-card-text>
-
             <v-card-actions class="d-flex justify-space-between">
-                <v-btn @click.stop="dialogUp=true" title="modifier mes informations">Modifier</v-btn>
-                <v-btn @click.stop="dialogDel=true" title="supprimer mon profil" color="red">Supprimer</v-btn>
+                <v-btn @click.stop="userUpdate=true" title="Modifier mes informations">Modifier</v-btn>
+                <v-btn @click.stop="userDelete=true" title="Supprimer mon profil" color="red">Supprimer</v-btn>
             </v-card-actions>
         </v-card>
 
-        <v-dialog persistent v-model="dialogUp" max-width="600px">
+        <v-dialog persistent v-model="userUpdate" max-width="600px">
             <v-card>
                 <v-card-title>Modifier mon profil</v-card-title>
                 <v-card-text>
@@ -31,13 +29,13 @@
                     </v-form>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn text @click="dialogUp=false">Annuler</v-btn>
+                    <v-btn text @click="userUpdate=false">Annuler</v-btn>
                     <v-btn text :disabled="!valid" @click="updateProfile">Valider</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
 
-        <v-dialog v-model="dialogDel" max-width="350px">
+        <v-dialog v-model="userDelete" max-width="350px">
             <v-card>
                 <v-card-title>
                     Êtes-vous sûr.e ?
@@ -48,7 +46,7 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn text @click="dialogDel=false">
+                    <v-btn text @click="userDelete=false">
                         Annuler
                     </v-btn>
                     <v-btn text @click="deleteUser">
@@ -69,8 +67,8 @@ export default {
     name: "Profil",
     data() {
         return{
-            dialogDel: false,
-            dialogUp: false,
+            userDelete: false,
+            userUpdate: false,
             msg: "",
             dataGet: { 
                 firstName: "",
@@ -120,7 +118,7 @@ export default {
             .then(response => {
                 let rep = JSON.parse(response.data);
                 console.log(rep);
-                this.dialogUp = false;
+                this.userUpdate = false;
                 window.location.assign('http://localhost:8080/Accueil/Profil');
             })
             .catch(error => {

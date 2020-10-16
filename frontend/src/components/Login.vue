@@ -1,6 +1,6 @@
 <template>
     <v-app class="login ma-auto mt-6">
-        <v-card raised>
+        <v-card>
             <v-card-text>
                 <v-form ref="form" v-model="valid">
                     <v-text-field v-model="dataLogin.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required autofocus></v-text-field>

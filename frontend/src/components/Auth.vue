@@ -1,6 +1,5 @@
 <template>
     <v-app id="auth">
-        
         <v-container class="auth">
             <div class="logo">
                 <v-img src="../assets/icon-left-font-monochrome-black.png" id ="logo"></v-img>
@@ -9,11 +8,8 @@
                 <v-btn class="auth__boutons--ind" color="black white--text" @click="component='signup'">S'inscrire</v-btn>
                 <v-btn class="auth__boutons--ind" color="black white--text white--hover" @click="component='login'">Se connecter</v-btn>
             </div>
-            
             <component v-bind:is="component"></component>
-            
         </v-container>
-        
     </v-app>
 </template>
 
