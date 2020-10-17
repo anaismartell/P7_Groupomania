@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const xss = require('xss-clean');
 const helmet = require("helmet");
+const mongoSanitize = require('express-mongo-sanitize');
 const app = express();
 const routesPosts = require('./routes/routesPosts');
 const routesUsers = require('./routes/routesUsers');
@@ -14,8 +14,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(xss());
-app.use (helmet()); 
+app.use (helmet());  // helmet configure de manière appropriée des en-têtes HTTP, contient 9 fonctions middlewares
+app.use(mongoSanitize()); // mongo-sanitize pour prévenir les risques d'injections
 app.use(bodyParser.json());
 
 app.use('/api/posts', routesPosts);

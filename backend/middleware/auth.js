@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
         let sql = 'SELECT COUNT(id) FROM users WHERE id=?';
         sql = mysql.format(sql, sqlInsert); 
         connectdb.query(sql, function(err, result){
-            if (err) reject({error : 'Erreur dans l\'inscription'});
+            if (err) reject({error : 'Erreur inscription'});
             if (result[0]['COUNT(id)'] !== 1) {
                 throw 'Token invalide';
             } else {
