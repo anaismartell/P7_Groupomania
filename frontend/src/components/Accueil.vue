@@ -1,11 +1,10 @@
 <template>
     <v-app id="homePage">
         <top-header/>
-            <div class="logo">
-                <v-img src="../assets/icon-left-font-monochrome-black.png" id ="logo"></v-img>
-            </div>  
-            <div id = "contentText">
-                <h1 class="ml-12">Bienvenue sur l'Intranet de Groupomania !</h1>
+        <router-view></router-view>
+           <div id= "headTitle">
+                <v-img src="../assets/icon-left-font.png" id ="logo"></v-img>
+                <h1>Bienvenue sur l'intranet de Groupomania !</h1>
             </div>
             <v-carousel
                 id="carousel" cycle height="auto" hide-delimiters :show-arrows="false">
@@ -40,27 +39,38 @@ export default {
 }
 </script>
 <style lang="scss">
-    #logo {
-        align-items: center;
-        margin-bottom: 10%;
-    }
     #homePage{
-        background-color: #fcdcdc;
+        background-image: url("../assets/images/openspace.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
     }
     #carousel{
         width: 60%;
-        margin-top: 5%;
         margin-bottom: 5%;
         margin-left: 20%;
     }
-    .header{
-        background-color: rgb(253,45,1);
-        color: white;
+
+    h1{
+        padding-top: 10%;
     }
+     #logo{
+        width: 20%;
+        position: relative;
+        margin-left: 80%;
+        padding-bottom: 0;
+    }
+ 
     @media screen and (min-width: 200px) and (max-width: 640px) {
     #carousel {
     padding-right: 15%;
     width: 80%;
     } 
+    #headTitle{
+        width: 60%;
+        margin-left: 20%;
+    }
+    h1{
+        font-size: 1.2em;
+    }
 }
 </style>

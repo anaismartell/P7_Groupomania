@@ -1,7 +1,10 @@
 <template>
     <v-app id="formPost">
         <top-header/>
-        <h1 class="ml-12">Forum d'échanges</h1>
+        <div id= "headTitle">
+            <v-img src="../assets/icon-left-font.png" id ="logo"></v-img>
+            <h1>Forum de partage</h1>
+         </div>
         <v-card class="ma-3 ml-12 align-self-center" id="displayCard">
             <v-card-title>
                 <h2>Créez votre nouveau post</h2>
@@ -79,7 +82,22 @@ export default {
         width: 50%;
     }
     #formPost {
-        background-color: #fcdcdc;
+        background-image: url("../assets/images/openspace.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #headTitle{
+        margin-bottom: 5%;
+            #logo{
+                width: 20%;
+                position: relative;
+                margin-left: 80%;
+                padding-bottom: 0;
+            }
+            h1{
+                text-align: center;
+                margin-top: -5%;
+            }
     }
 
 </style>

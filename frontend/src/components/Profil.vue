@@ -152,7 +152,9 @@ export default {
 
 <style lang="scss">
     #profil{
-        background-color: black;
+        background-image: url("../assets/images/openspace.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
     }
     
     .logo{
