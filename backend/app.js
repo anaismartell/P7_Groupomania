@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require("helmet");
-const mongoSanitize = require('express-mongo-sanitize');
 const app = express();
 const routesPosts = require('./routes/routesPosts');
 const routesUsers = require('./routes/routesUsers');
 const routesModeration = require('./routes/routesModeration');
+const connectdb = require('./connectdb.js'); 
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -14,9 +14,19 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use (helmet());  // helmet configure de manière appropriée des en-têtes HTTP, contient 9 fonctions middlewares
-app.use(mongoSanitize()); // mongo-sanitize pour prévenir les risques d'injections
+app.use (helmet()); 
 app.use(bodyParser.json());
+
+
+
+/*connectdb.connect(function(err){
+    if(!err) {
+        console.log("Connecté à Groupomania!");
+    } else {
+        console.log("Erreur de connexion");
+    }
+    })
+    */
 
 app.use('/api/posts', routesPosts);
 app.use('/api/auth', routesUsers);

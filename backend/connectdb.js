@@ -12,3 +12,26 @@ connectdb.connect(function(err) {
 });
 
 module.exports = connectdb;
+
+
+/*
+require('dotenv').config();
+const mysql = require('mysql');
+
+// Connexion à MYSQL
+const connectdb = mysql.createConnection({
+  user : process.env.USER,
+  password : process.env.PASS,
+  host : process.env.HOST,
+  database : process.env.DATABASE
+});
+
+connectdb.connect(function(err){
+    if(!err) {
+        console.log("Connexion à groupomania !");
+    } else {
+        console.log("Erreur de connexion");
+    }
+    })
+
+module.exports = connectdb; */
