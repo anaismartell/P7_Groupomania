@@ -5,7 +5,7 @@ const app = express();
 const routesPosts = require('./routes/routesPosts');
 const routesUsers = require('./routes/routesUsers');
 const routesModeration = require('./routes/routesModeration');
-const connectdb = require('./connectdb.js'); 
+const mongoSanitize = require('express-mongo-sanitize');
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -14,7 +14,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use (helmet()); 
+
+app.use(mongoSanitize()); // mongo-sanitize pour prévenir les risques d'injections
+app.use(helmet()); // helmet configure de manière appropriée des en-têtes HTTP, contient 9 fonctions middlewares
 app.use(bodyParser.json());
 
 
