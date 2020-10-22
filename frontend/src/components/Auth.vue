@@ -2,7 +2,7 @@
     <v-app id="auth">
         <v-container class="auth">
             <div class="logo">
-                <v-img src="../assets/icon-above-font.png" id ="logo"></v-img>
+                <v-img src="../assets/icon-above-font.png" id ="logoPng"></v-img>
             </div>  
             <div class="auth__boutons">
                 <v-btn class="auth__boutons--ind" color="black white--text" @click="component='signup'">S'inscrire</v-btn>
@@ -53,6 +53,9 @@
                     
                 }
         }
+    }
+    #logoPng {
+        width: 30%;
     }
     
 </style>

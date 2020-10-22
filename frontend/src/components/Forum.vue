@@ -1,15 +1,15 @@
 <template>
     <v-app id="forum" class="forum">
         <top-header/>
-        <div class="ml-3">
+        <div class="ml-12">
             <div id= "headTitle">
                 <v-img src="../assets/icon-left-font.png" id ="logo"></v-img>
-                <h1>Forum de partage</h1>
+                <h1 class="ma-4">Forum de partage</h1>
             </div>
             <router-view></router-view>
             <v-container >
                 <v-btn class="ma-3" color="pink lighten-4 black--text" @click="displayForm">Créer un post</v-btn>
-                
+    
                     <v-card class="forum__post ma-3 mt-6" v-for="(post, index) in allPosts" v-bind:key="index">
                         <div class="d-flex justify-space-between">
                             <v-card-title>

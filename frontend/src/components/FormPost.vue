@@ -3,10 +3,10 @@
         <top-header/>
         <div id= "headTitle">
             <v-img src="../assets/icon-left-font.png" id ="logo"></v-img>
-            <h1>Forum de partage</h1>
+            <h1 class="ml-12">Forum</h1>
          </div>
         <v-card class="ma-3 ml-12 align-self-center" id="displayCard">
-            <v-card-title>
+            <v-card-title class="mb-3">
                 <h2>Créez votre nouveau post</h2>
             </v-card-title>
             <v-card-text>

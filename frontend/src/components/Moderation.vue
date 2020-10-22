@@ -2,7 +2,7 @@
     <v-app id="moderation" class="moderation">
         <top-header/>
         <div class="ml-12">
-            <h1 class="ma-4">Modération</h1>
+            <h1 class="ma-4">Espace du modérateur</h1>
             <v-container>
                 <v-btn class="ma-3" color="black white--text" @click="clickPosts">Voir les posts</v-btn>
                 <v-btn class="ma-3" color="black white--text" @click="clickComments">Voir les commentaires</v-btn>
@@ -123,5 +123,9 @@ export default {
 </script>
 
 <style lang="scss">
+
+h1{
+    text-align: center;
+}
 
 </style>
