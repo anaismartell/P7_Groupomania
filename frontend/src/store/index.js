@@ -5,11 +5,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    authObj: {
-      userId: "",
-      token: "",
-      
-    }
   },
   mutations: {
   },
