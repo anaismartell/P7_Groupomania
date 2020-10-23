@@ -19,7 +19,6 @@
                 <v-btn  :disabled="!valid" class="success" @click="createPost">Poster</v-btn>
                 <v-btn text href="/Accueil/Forum" color="black">Annuler</v-btn>
             </v-card-actions>
-
         </v-card>
     </v-app>
 </template>

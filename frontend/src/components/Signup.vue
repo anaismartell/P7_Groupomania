@@ -8,6 +8,7 @@
                     <v-text-field  v-model="dataSignup.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required></v-text-field>
                     <v-text-field  v-model="dataSignup.password" :rules="passRules" error-count="4" type="password" label="Mot de passe" prepend-icon="mdi-lock-outline" color="black" required></v-text-field>
                 </v-form>
+
                 <template>
                   <div class="text-center">
                     <v-dialog v-model="dialog" persistent width="500">
@@ -28,6 +29,7 @@
                     </v-dialog>
                   </div>
                 </template>
+                
                 <p v-if="msg">{{ message }}</p>
             </v-card-text>
         </v-card>

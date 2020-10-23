@@ -27,6 +27,7 @@
                         </v-card-actions>
                     </v-card>
                 </div>
+
                 <div v-if="showComments">
                     <v-card class="forum__comments--ind my-1 mx-2 pa-0" color="#ECECEC" v-for="(comment, index) in allComments" v-bind:key="index" outlined>
                         <v-card-subtitle class=" pb-0 forum__comments__name">

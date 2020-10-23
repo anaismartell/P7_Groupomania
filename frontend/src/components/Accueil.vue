@@ -12,6 +12,7 @@
             </v-carousel>      
     </v-app>
 </template>
+
 <script>
 import Header from "./Header"
 

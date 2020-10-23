@@ -9,7 +9,6 @@
             </v-card-text>
             <v-btn :disabled="!valid" class="success mb-3" @click="sendLogin()">Valider</v-btn>
             <p v-if="msg">{{ message }}</p>
-            
         </v-card>
     </v-app>
 </template>
