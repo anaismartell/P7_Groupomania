@@ -14,7 +14,8 @@ Connectez-vous à la base de données
 - Connectez-vous à MySQL: mysql -h localhost -u root -p
 - Tapez votre mot de passe
 - Créez la base de données : CREATE DATABASE groupomania CHARACTER SET 'utf8'
-- Utilisez la base de données crééée: USE groupomania;
+- Utilisez la base de données crééé: USE groupomania;
+- Importez le fichier groupomania.sql : SOURCE groupomania.sql;
 - Dirigez-vous dans le dossier backend
 - Ouvrez le fichier connectdb.js et renseignez votre mot passe MySQL dans password
 
